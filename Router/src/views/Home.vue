@@ -13,9 +13,8 @@ fetch(`http://www.omdbapi.com/?s=${encodeURIComponent(this.search)}&apikey=315c7
 </script>
 
 <template>
-
-  <div>
-   <h1>Movies</h1>
+  <h1>Movies</h1>
+  
   <div class="searchbox">
     <input v-model="search" type="search" name="" id="">
     <button @click="getPosts">search</button>
@@ -33,6 +32,6 @@ fetch(`http://www.omdbapi.com/?s=${encodeURIComponent(this.search)}&apikey=315c7
 
       </li>
     </ul>
-        <p v-else>Not Available</p>
+   <p v-else>Not Available</p>
   </div>
 </template>
