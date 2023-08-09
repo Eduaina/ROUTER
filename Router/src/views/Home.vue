@@ -31,7 +31,7 @@ const getPosts = () => {
 
     <div class="movies">
       <ul v-if="post.length">
-        <li v-for="movie in post" :key="movie.imdbID">
+        <li v-for="movie in post" :key="movie.imdbID" class="result">
           <img v-if="movie.Poster !== 'N/A'" :src="movie.Poster" alt="Movie Poster">
 
           <div class="details">
@@ -98,35 +98,48 @@ button:hover {
 
 .movies {
   background-color: white;
-    overflow: hidden;
-    margin: 30px;
-    display: flex;
-    align-items: cover;
-    justify-content: space-between;
-
-
+  overflow: hidden;
+  margin: 30px;
+  display: flex;
+  align-items: cover;
+  justify-content: space-between;
+  width: 90%;
+  margin: 0 auto;
 }
+
+.result {
+  background-color: #f0f0f0;
+  border: 1px solid #dddddd;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.result img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px 5px 0 0;
+}
+
 
 .details {
-
+    
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-ul{
-  list-style-type: none;
-
+.details h3 {
+  margin: 0;
+  font-size: 1.2rem;
 }
+
+.details p {
+  font-size: 12px;
+  margin-top: 10px;
+  color: black;
+  
+}
+
 .searchbox{
   width: 80%;
   height: 35px;
