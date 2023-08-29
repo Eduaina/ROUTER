@@ -1,14 +1,25 @@
-<script setup>
+<script>
 import { ref } from 'vue'
 
-const search = ref('')
-const post = ref([])
+export default {
+  setup () {
+   const search = ref('')
+   const post = ref([])
 
-const getPosts = () => {
-  if (search.value !== '') {
-    fetch(`http://www.omdbapi.com/?apikey=4fc450c6&s=${search.value}`)
+   const getPosts = () => {
+     if (search.value !== '') {
+       fetch(`http://www.omdbapi.com/?apikey=4fc450c6&s=${search.value}`)
       .then(response => response.json())
-      .then(data => post.value = data.Search)
+      .then(data => post.value = data.Search) (search.value = "") 
+  } 
+}
+  
+return {
+      search,
+      post,
+      getPosts
+    }
+
   }
 }
 </script>
@@ -17,29 +28,29 @@ const getPosts = () => {
 <template>
   <div class="body">
     <div class="text">
-       <h4>Notice!</h4>
-       <p>BB Movies.com is definitely going to have ads. The goal is to make a living and pay our dedicated staff afterall. We as a team however promise to make sure these revenue ads dont become irritating enough to turn into a full blown meance. Our customers are afterall as important as our checks.
-       </p>
+      <h4>Notice!</h4>
+      <p>BB Movies.com is definitely going to have ads. The goal is to make a living and pay our dedicated staff afterall. We as a team however promise to make sure these revenue ads dont become irritating enough to turn into a full blown meance. Our customers are afterall as important as our checks.</p>
     </div>
 
     <h4 class="cue">Search for your favorite movies here</h4>
   
     <div class="searchbox">      
-        <input v-model="search" type="search" name="Search Here" id="search">
-        <button @click="getPosts" id="button">search</button>
+     <input v-model="search" type="text" placeholder="Search Here" name="Search Here" id="search">
+     <button @click="getPosts" id="button">search</button>
     </div>
 
     <div class="movies">
       <ul v-if="post.length">
         <li v-for="movie in post" :key="movie.imdbID" class="result">
-          <img v-if="movie.Poster !== 'N/A'" :src="movie.Poster" alt="Movie Poster">
+          <router-link :to="'/movie/' + movie.imdbID" class="movie-link">
+            <img v-if="movie.Poster !== 'N/A'" :src="movie.Poster" alt="Movie Poster">
 
-          <div class="details">
-            <h3>{{ movie.Title }}</h3>
-            <p>Year: {{ movie.Year }}</p>
-            <p>Plot: {{ movie.Plot }}</p>
-          </div>
-
+            <div class="details">
+             <h3>{{ movie.Title }}</h3>
+             <p>Year: {{ movie.Year }}</p>
+             <p>Plot: {{ movie.Plot }}</p>
+           </div>
+         </router-link>
         </li>
       </ul>
     </div>
@@ -80,7 +91,7 @@ const getPosts = () => {
 
 .searchbox {
   padding: 1px;
-  background-color:;
+
 }
 
 #search {
@@ -116,6 +127,15 @@ button:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+
+img {
+  width: ;
+  height: ;
+  object-fit: ;
+  
+
+
+}
 .result img {
   width: 100%;
   object-fit: cover;

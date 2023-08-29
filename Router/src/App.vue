@@ -12,8 +12,8 @@ import { RouterLink } from 'vue-router';
   </div>
  </nav>
 
- 
   <RouterView></RouterView>
+
 </template>
 
 <style scoped>
@@ -30,7 +30,7 @@ import { RouterLink } from 'vue-router';
   border-radius: 5px;
   box-shadow: 0 0 10px 3px #6EC1E4;
   background: white;
-
+  font-family: sans-serif;
 }
 
 .title {
